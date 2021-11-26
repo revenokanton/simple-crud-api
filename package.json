@@ -1,0 +1,19 @@
+{
+  "name": "simple-crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revenokanton/simple-crud-api.git"
+  },
+  "author": "Anton Revenok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/revenokanton/simple-crud-api/issues"
+  },
+  "homepage": "https://github.com/revenokanton/simple-crud-api#readme"
+}
