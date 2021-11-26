@@ -2,33 +2,48 @@ const http = require('http');
 const {
   getPersons,
   getPerson,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-} = require('./controllers/productController');
+  createPerson,
+  updatePerson,
+  deletePerson,
+} = require('./controllers');
+const { getRoute, getId } = require('./utils/router');
 
 const server = http.createServer((req, res) => {
-  if (req.url === '/api/products' && req.method === 'GET') {
-    getPersons(req, res);
-  } else if (req.url.match(/\/api\/products\/\w+/) && req.method === 'GET') {
-    const id = req.url.split('/')[3];
-    getPerson(req, res, id);
-  } else if (req.url === '/api/products' && req.method === 'POST') {
-    createProduct(req, res);
-  } else if (req.url.match(/\/api\/products\/\w+/) && req.method === 'PUT') {
-    const id = req.url.split('/')[3];
-    updateProduct(req, res, id);
-  } else if (req.url.match(/\/api\/products\/\w+/) && req.method === 'DELETE') {
-    const id = req.url.split('/')[3];
-    deleteProduct(req, res, id);
-  } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Route Not Found' }));
+  const route = getRoute({ url: req.url, method: req.method });
+  switch (route) {
+    case 'GET_ALL': {
+      getPersons(req, res);
+      break;
+    }
+    case 'GET_BY_ID': {
+      const id = getId(req.url);
+      getPerson(req, res, id);
+      break;
+    }
+    case 'CREATE': {
+      createPerson(req, res);
+      break;
+    }
+    case 'UPDATE': {
+      const id = getId(req.url);
+      updatePerson(req, res, id);
+      break;
+    }
+    case 'DELETE': {
+      const id = getId(req.url);
+      deletePerson(req, res, id);
+      break;
+    }
+    default: {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: 'Not found' }));
+      break;
+    }
   }
 });
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server starts on port ${PORT}`));
 
 module.exports = server;
