@@ -16,7 +16,11 @@
     "url": "https://github.com/revenokanton/simple-crud-api/issues"
   },
   "homepage": "https://github.com/revenokanton/simple-crud-api#readme",
-  "devDependencies": {
+  "dependencies": {
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "prettier": "2.5.0"
   }
 }
