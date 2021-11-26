@@ -1,23 +1,17 @@
 const http = require('http');
-const {
-  getPersons,
-  getPerson,
-  createPerson,
-  updatePerson,
-  deletePerson,
-} = require('./controllers');
+const { getPersons, getPerson } = require('./controllers/getPersonController');
 const { getRoute, getId } = require('./utils/router');
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const route = getRoute({ url: req.url, method: req.method });
   switch (route) {
     case 'GET_ALL': {
-      getPersons(req, res);
+      await getPersons(req, res);
       break;
     }
     case 'GET_BY_ID': {
       const id = getId(req.url);
-      getPerson(req, res, id);
+      await getPerson(req, res, id);
       break;
     }
     case 'CREATE': {
