@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/revenokanton/simple-crud-api/issues"
   },
-  "homepage": "https://github.com/revenokanton/simple-crud-api#readme"
+  "homepage": "https://github.com/revenokanton/simple-crud-api#readme",
+  "devDependencies": {
+    "uuid": "^8.3.2"
+  }
 }
