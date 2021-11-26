@@ -1,4 +1,4 @@
-const Person = require('../models/personsModel');
+const Person = require('../models/personModel');
 
 const { resHeaders } = require('../utils/config');
 const { errorHandler } = require('./errorController');
@@ -22,6 +22,7 @@ const getPerson = async (req, res, id) => {
     }
 
     const person = await Person._findById(id);
+
     if (person) {
       res.writeHead(200, resHeaders);
       return res.end(JSON.stringify(person));

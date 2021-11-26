@@ -1,6 +1,9 @@
 const http = require('http');
-const { getPersons, getPerson } = require('./controllers/getPersonController');
 const { getRoute, getId } = require('./utils/router');
+const { getPersons, getPerson } = require('./controllers/getPersonController');
+const { createPerson } = require('./controllers/createPersonController');
+const { updatePerson } = require('./controllers/updatePersonController');
+const { deletePerson } = require('./controllers/deletePersonController');
 
 const server = http.createServer(async (req, res) => {
   const route = getRoute({ url: req.url, method: req.method });
@@ -15,23 +18,22 @@ const server = http.createServer(async (req, res) => {
       break;
     }
     case 'CREATE': {
-      createPerson(req, res);
+      await createPerson(req, res);
       break;
     }
     case 'UPDATE': {
       const id = getId(req.url);
-      updatePerson(req, res, id);
+      await updatePerson(req, res, id);
       break;
     }
     case 'DELETE': {
       const id = getId(req.url);
-      deletePerson(req, res, id);
+      await deletePerson(req, res, id);
       break;
     }
     default: {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: 'Not found' }));
-      break;
+      return res.end(JSON.stringify({ message: 'Not found' }));
     }
   }
 });

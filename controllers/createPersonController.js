@@ -1,9 +1,9 @@
 const { getPersonData } = require('../utils/db_worker');
-const Person = require('../models/personsModel');
+const Person = require('../models/personModel');
 const { errorHandler } = require('./errorController');
 const { resHeaders } = require('../utils/config');
 
-const createProduct = async (req, res) => {
+const createPerson = async (req, res) => {
   try {
     const body = await getPersonData(req);
 
@@ -44,5 +44,5 @@ const createProduct = async (req, res) => {
 };
 
 module.exports = {
-  createProduct,
+  createPerson,
 };
