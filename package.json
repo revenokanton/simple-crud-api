@@ -2,8 +2,9 @@
   "name": "simple-crud-api",
   "version": "1.0.0",
   "description": "Simple CRUD API",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start:dev": "nodemon server.js",
     "test": "test"
   },
   "repository": {
@@ -22,6 +23,7 @@
   "devDependencies": {
     "eslint": "^8.3.0",
     "nodemon": "^2.0.15",
-    "prettier": "2.5.0"
+    "prettier": "2.5.0",
+    "webpack": "^5.64.4"
   }
 }
