@@ -1,8 +1,8 @@
-const Person = require('../models/personModel');
+const Person = require('../../models/personModel');
 
-const { resHeaders } = require('../utils/config');
+const { resHeaders } = require('../../utils/config');
 const { errorHandler } = require('./errorController');
-const { isValidUUID } = require('../utils/utils');
+const { isValidUUID } = require('../../utils/utils');
 
 const getPersons = async (req, res) => {
   try {

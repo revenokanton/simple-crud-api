@@ -1,7 +1,7 @@
-const { getPersonData } = require('../utils/db_worker');
-const Person = require('../models/personModel');
+const { getPersonData } = require('../../utils/db_worker');
+const Person = require('../../models/personModel');
 const { errorHandler } = require('./errorController');
-const { resHeaders } = require('../utils/config');
+const { resHeaders } = require('../../utils/config');
 
 const createPerson = async (req, res) => {
   try {

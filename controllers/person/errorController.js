@@ -1,4 +1,4 @@
-const { resHeaders } = require('../utils/config');
+const { resHeaders } = require('../../utils/config');
 
 const errorHandler = (res, errorCode, errorMessage) => {
   res.writeHead(errorCode, resHeaders);

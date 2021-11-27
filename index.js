@@ -1,11 +1,15 @@
 const http = require('http');
 const { getRoute, getId } = require('./utils/router');
-const { getPersons, getPerson } = require('./controllers/getPersonController');
-const { createPerson } = require('./controllers/createPersonController');
-const { updatePerson } = require('./controllers/updatePersonController');
-const { deletePerson } = require('./controllers/deletePersonController');
+const { resHeaders } = require('./utils/config');
+const {
+  getPersons,
+  getPerson,
+} = require('./controllers/person/getPersonController');
+const { createPerson } = require('./controllers/person/createPersonController');
+const { updatePerson } = require('./controllers/person/updatePersonController');
+const { deletePerson } = require('./controllers/person/deletePersonController');
 
-const server = http.createServer(async (req, res) => {
+const index = http.createServer(async (req, res) => {
   const route = getRoute({ url: req.url, method: req.method });
   switch (route) {
     case 'GET_ALL': {
@@ -32,7 +36,7 @@ const server = http.createServer(async (req, res) => {
       break;
     }
     default: {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.writeHead(404, resHeaders);
       return res.end(JSON.stringify({ message: 'Not found' }));
     }
   }
@@ -40,6 +44,6 @@ const server = http.createServer(async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => console.log(`Server starts on port ${PORT}`));
+index.listen(PORT, () => console.log(`Server starts on port ${PORT}`));
 
-module.exports = server;
+module.exports = index;

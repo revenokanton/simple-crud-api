@@ -1,8 +1,8 @@
-const Person = require('../models/personModel');
-const { getPersonData } = require('../utils/db_worker');
+const Person = require('../../models/personModel');
+const { getPersonData } = require('../../utils/db_worker');
 const { errorHandler } = require('./errorController');
-const { isValidUUID } = require('../utils/utils');
-const { resHeaders } = require('../utils/config');
+const { isValidUUID } = require('../../utils/utils');
+const { resHeaders } = require('../../utils/config');
 
 const updatePerson = async (req, res, id) => {
   try {
