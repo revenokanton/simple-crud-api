@@ -1,4 +1,4 @@
-# Node CRUD restful
+# Simple CRUD API
 A simple restful NodeJS CRUD
 
 
@@ -18,7 +18,11 @@ A simple restful NodeJS CRUD
 ```
 npm install
 ```
-Then run API with:
+Run API in development mode with:
 ```
-npm run dev
+npm run start:dev
+```
+Run API in production mode with:
+```
+npm run start:prod
 ```

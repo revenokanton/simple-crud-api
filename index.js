@@ -9,7 +9,7 @@ const { createPerson } = require('./controllers/person/createPersonController');
 const { updatePerson } = require('./controllers/person/updatePersonController');
 const { deletePerson } = require('./controllers/person/deletePersonController');
 
-const index = http.createServer(async (req, res) => {
+const server = http.createServer(async (req, res) => {
   const route = getRoute({ url: req.url, method: req.method });
   switch (route) {
     case 'GET_ALL': {
@@ -44,6 +44,6 @@ const index = http.createServer(async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-index.listen(PORT, () => console.log(`Server starts on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server starts on port ${PORT}`));
 
-module.exports = index;
+module.exports = server;
