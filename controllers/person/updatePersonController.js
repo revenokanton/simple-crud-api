@@ -21,7 +21,7 @@ const updatePerson = async (req, res, id) => {
         const personData = {
           name: name || person.name,
           age: age || person.age,
-          hobbies: hobbies || person.hobbies,
+          hobbies: Array.isArray(hobbies) ? hobbies : person.hobbies,
         };
 
         const updatedPerson = await Person._update(id, personData);

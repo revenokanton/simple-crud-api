@@ -5,14 +5,10 @@ const { resHeaders } = require('../../utils/config');
 
 const deletePerson = async (req, res, id) => {
   try {
-    if (!isValidUUID(id)) {
-      errorHandler(res, 400, 'Id is not valid.');
-    } else {
+    if (isValidUUID(id)) {
       const person = await Person._findById(id);
 
-      if (!person) {
-        errorHandler(res, 404, 'No person with given id found.');
-      } else {
+      if (person) {
         await Person._delete(id);
 
         res.writeHead(204, resHeaders);
@@ -21,7 +17,11 @@ const deletePerson = async (req, res, id) => {
             message: `Person ${person.name} with ${id} was removed.`,
           }),
         );
+      } else {
+        errorHandler(res, 404, 'No person with given id found.');
       }
+    } else {
+      errorHandler(res, 400, 'Id is not valid.');
     }
   } catch (error) {
     console.log(error);
