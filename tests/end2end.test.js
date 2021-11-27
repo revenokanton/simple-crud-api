@@ -83,17 +83,17 @@ describe('GET /person', () => {
     request
       .agent(server)
       .delete(`/person/${createdId}`)
+      .send({})
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(204, done);
+      .expect(204, '', done);
   });
-  it('GET-request, we are trying to get a remote object by id', async (done) => {
-    await new Promise((resolve) => setTimeout(resolve, 10));
+  it('GET-request, we are trying to get a remote object by id', (done) => {
     request
       .agent(server)
       .get(`/person/${createdId}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, {}, done);
+      .expect(404, done);
   });
 });

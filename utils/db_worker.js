@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const getPersonData = (req) =>
   new Promise((resolve, reject) => {
     try {
@@ -17,17 +15,6 @@ const getPersonData = (req) =>
     }
   });
 
-const writeDataToDb = (filename, content) => {
-  try {
-    fs.writeFileSync(filename, JSON.stringify(content), {
-      encoding: 'utf8',
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 module.exports = {
   getPersonData,
-  writeDataToDb,
 };

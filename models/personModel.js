@@ -1,8 +1,9 @@
 const { v4: uuidv4 } = require('uuid');
-const persons = require('../db/db.json');
+let persons = [];
 
-const { writeDataToDb } = require('../utils/db_worker');
-const { dbPath } = require('../utils/config');
+const writeDataToDb = (content) => {
+  persons = content;
+};
 
 const _findAll = () => new Promise((resolve) => resolve(persons));
 
@@ -13,7 +14,7 @@ const _create = (person) => {
   return new Promise((resolve) => {
     const newPerson = { id: uuidv4(), ...person };
     persons.push(newPerson);
-    writeDataToDb(dbPath, persons);
+    writeDataToDb(persons);
     resolve(newPerson);
   });
 };
@@ -22,7 +23,7 @@ const _update = (id, person) => {
   return new Promise((resolve) => {
     const index = persons.findIndex((p) => p?.id === id);
     persons[index] = { id, ...person };
-    writeDataToDb(dbPath, persons);
+    writeDataToDb(persons);
     resolve(persons[index]);
   });
 };
@@ -30,8 +31,8 @@ const _update = (id, person) => {
 const _delete = (id) =>
   new Promise((resolve) => {
     const filteredPersons = persons.filter((p) => p.id !== id);
-    writeDataToDb(dbPath, filteredPersons);
-    resolve();
+    writeDataToDb(filteredPersons);
+    resolve(id);
   });
 
 module.exports = {

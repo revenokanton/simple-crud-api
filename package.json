@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "nodemon index.js",
     "start:prod": "npm run build && node build/server.js",
-    "build": "webpack --config config/webpack.server.config"
+    "build": "webpack --config config/webpack.server.config",
+    "test": "mocha tests/end2end.test.js"
   },
   "repository": {
     "type": "git",
