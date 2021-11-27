@@ -21,7 +21,6 @@ const writeDataToDb = (filename, content) => {
   try {
     fs.writeFileSync(filename, JSON.stringify(content), {
       encoding: 'utf8',
-      flag: 'a+',
     });
   } catch (error) {
     console.log(error);

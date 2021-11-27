@@ -11,6 +11,9 @@ const { deletePerson } = require('./controllers/person/deletePersonController');
 
 const server = http.createServer(async (req, res) => {
   const route = getRoute({ url: req.url, method: req.method });
+  process.on('uncaughtException', function (error) {
+    console.log(error.stack);
+  });
   switch (route) {
     case 'GET_ALL': {
       await getPersons(req, res);

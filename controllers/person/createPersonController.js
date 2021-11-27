@@ -25,21 +25,21 @@ const createPerson = async (req, res) => {
       }
     });
 
-    errorHandler(
-      res,
-      400,
-      `The following required parameters are missing: ${missedParams.join(
-        ',',
-      )}`,
-    );
+    if (missedParams.length) {
+      errorHandler(
+        res,
+        400,
+        `Required parameters are missing: ${missedParams.join(',')}`,
+      );
+    } else {
+      const newPerson = await Person._create(person);
 
-    const newPerson = await Person._create(person);
-
-    res.writeHead(201, resHeaders);
-    return res.end(JSON.stringify(newPerson));
+      res.writeHead(201, resHeaders);
+      return res.end(JSON.stringify(newPerson));
+    }
   } catch (error) {
     console.log(error);
-    errorHandler(res, 400, `Wrong body passed.`);
+    errorHandler(res, 500, 'Internal server error.');
   }
 };
 

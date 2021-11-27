@@ -1,7 +1,7 @@
 const getRoute = ({ url, method }) => {
-  const isMatch = url?.match(/\/api\/person\/\w+/);
+  const isMatch = url?.match(/\/person\/\w+/);
 
-  if (url === '/api/person' && method === 'GET') {
+  if (url === '/person' && method === 'GET') {
     return 'GET_ALL';
   }
 
@@ -9,7 +9,7 @@ const getRoute = ({ url, method }) => {
     return 'GET_BY_ID';
   }
 
-  if (url === '/api/person' && method === 'POST') {
+  if (url === '/person' && method === 'POST') {
     return 'CREATE';
   }
 
@@ -23,7 +23,7 @@ const getRoute = ({ url, method }) => {
 };
 
 const getId = (url) => {
-  return url?.split('/')?.[3];
+  return url?.split('/')?.[2];
 };
 
 module.exports = {
